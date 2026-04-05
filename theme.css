@@ -1,0 +1,831 @@
+/* =================================================================
+ * XCODE FOR OBSIDIAN
+ * ================================================================= */
+
+body {
+    --tab-radius: 0px;
+    --radius-s: 4px;
+    --radius-m: 6px;
+    --radius-l: 8px;
+
+    --font-interface-theme: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-text-theme: "SF Pro Rounded", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-monospace-theme: "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    --font-interface: var(--font-interface-theme);
+    --font-text: var(--font-text-theme);
+    --font-monospace: var(--font-monospace-theme);
+
+    --line-height-normal: 1.82;
+    --line-height-tight: 1.4;
+    --file-line-width: 760px;
+}
+
+/* =================================================================
+ * PALETTES
+ * ================================================================= */
+
+.theme-dark {
+    color-scheme: dark;
+
+    --xcode-window: #282831;
+    --xcode-sidebar: #32323b;
+    --xcode-editor: #292a30;
+    --xcode-panel: #1c1f21;
+    --xcode-tab-active: #32323b;
+    --xcode-tab-inactive: #282831;
+    --xcode-line: #2f3239;
+    --xcode-selection: #646f8366;
+    --xcode-border: #3b3d46;
+    --xcode-border-strong: #000000;
+    --xcode-hover: rgba(255, 255, 255, 0.05);
+    --xcode-hover-strong: rgba(255, 255, 255, 0.08);
+
+    --xcode-text: #dfdfe0;
+    --xcode-muted: #b7b8bb;
+    --xcode-faint: #9a9c9d;
+    --xcode-subtle: #7a7d82;
+
+    --xcode-accent: #3071db;
+    --xcode-accent-hover: #4383ea;
+    --xcode-link: #6699ff;
+    --xcode-focus: #007aff;
+
+    --xcode-comment: #a0d07d;
+    --xcode-string: #fc6a5d;
+    --xcode-number: #d0bf69;
+    --xcode-keyword: #ff7ab2;
+    --xcode-preprocessor: #ffa14f;
+    --xcode-function: #5dd8ff;
+    --xcode-type: #e5cfff;
+    --xcode-annotation: #d0a8ff;
+    --xcode-variable: #49b7d7;
+    --xcode-parameter: #83c9bc;
+    --xcode-property: #83c9bc;
+    --xcode-operator: #a167e6;
+    --xcode-boolean: #d6c455;
+    --xcode-punctuation: #dfdfe0;
+
+    --xcode-code-bg: #1b1e24;
+    --xcode-inline-code-bg: #252830;
+    --xcode-callout-bg: rgba(48, 113, 219, 0.1);
+    --xcode-chrome-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0) 100%);
+
+    --background-primary: var(--xcode-editor);
+    --background-primary-alt: var(--xcode-editor);
+    --background-secondary: var(--xcode-sidebar);
+    --background-secondary-alt: var(--xcode-window);
+    --background-modifier-border: var(--xcode-border);
+    --background-modifier-border-hover: #4f5153;
+    --background-modifier-form-field: #2a2c2f;
+    --background-modifier-hover: var(--xcode-hover);
+    --background-modifier-active-hover: var(--xcode-hover-strong);
+    --background-modifier-message: #2a2c2f;
+    --background-modifier-success: rgba(79, 130, 206, 0.18);
+    --background-modifier-error: rgba(226, 21, 20, 0.18);
+    --background-modifier-cover: rgba(0, 0, 0, 0.55);
+    --background-modifier-box-shadow: rgba(0, 0, 0, 0.3);
+
+    --text-normal: var(--xcode-text);
+    --text-muted: var(--xcode-muted);
+    --text-faint: var(--xcode-subtle);
+    --text-on-accent: #ffffff;
+    --text-accent: var(--xcode-link);
+    --text-link: var(--xcode-link);
+    --text-selection: var(--xcode-selection);
+    --text-highlight-bg: rgba(255, 251, 0, 0.28);
+    --text-error: #e21514;
+    --text-success: #4f82ce;
+
+    --interactive-normal: #2a2c2f;
+    --interactive-hover: #34363d;
+    --interactive-accent: var(--xcode-accent);
+    --interactive-accent-hover: var(--xcode-accent-hover);
+    --interactive-accent-rgb: 48, 113, 219;
+
+    --nav-item-color: var(--xcode-muted);
+    --nav-item-color-hover: var(--xcode-text);
+    --nav-item-color-active: #ffffff;
+    --nav-item-background-hover: transparent;
+    --nav-item-background-active: var(--xcode-accent);
+
+    --titlebar-background: var(--xcode-window);
+    --titlebar-background-focused: var(--xcode-window);
+    --titlebar-text-color: var(--xcode-muted);
+    --titlebar-text-color-focused: var(--xcode-text);
+    --tab-container-background: var(--xcode-window);
+    --tab-divider-color: var(--xcode-border-strong);
+
+    --icon-color: var(--xcode-faint);
+    --icon-color-hover: var(--xcode-text);
+    --icon-color-focused: var(--xcode-text);
+    --icon-color-active: #ffffff;
+
+    --blockquote-border-color: #4f82ce;
+    --hr-color: var(--xcode-border);
+    --table-border-color: var(--xcode-border);
+    --tag-background: rgba(102, 153, 255, 0.14);
+    --tag-color: var(--xcode-text);
+    --code-background: var(--xcode-code-bg);
+    --code-normal: var(--xcode-text);
+    --scrollbar-thumb-bg: #4f5153;
+    --scrollbar-active-thumb-bg: var(--xcode-accent);
+}
+
+.theme-light {
+    color-scheme: light;
+
+    --xcode-window: #ececec;
+    --xcode-sidebar: #f5f5f5;
+    --xcode-editor: #ffffff;
+    --xcode-panel: #ececec;
+    --xcode-tab-active: #ffffff;
+    --xcode-tab-inactive: #f5f5f5;
+    --xcode-line: #eef5fe;
+    --xcode-selection: #b3d7ff;
+    --xcode-border: #d9d7d5;
+    --xcode-border-strong: #d9d7d5;
+    --xcode-hover: rgba(40, 40, 40, 0.05);
+    --xcode-hover-strong: rgba(40, 40, 40, 0.08);
+
+    --xcode-text: #282828;
+    --xcode-muted: #565456;
+    --xcode-faint: #a6a6a6;
+    --xcode-subtle: #707f8c;
+
+    --xcode-accent: #3c93fd;
+    --xcode-accent-hover: #2f86f1;
+    --xcode-link: #272ad8;
+    --xcode-focus: #82adf3;
+
+    --xcode-comment: #309409;
+    --xcode-string: #d12f1b;
+    --xcode-number: #272ad8;
+    --xcode-keyword: #ad3da4;
+    --xcode-preprocessor: #78492a;
+    --xcode-function: #3e8087;
+    --xcode-type: #23575c;
+    --xcode-annotation: #6c36a9;
+    --xcode-variable: #438287;
+    --xcode-parameter: #057cb0;
+    --xcode-property: #3e8087;
+    --xcode-operator: #000000;
+    --xcode-boolean: #272ad8;
+    --xcode-punctuation: #000000;
+
+    --xcode-code-bg: #f3f4f6;
+    --xcode-inline-code-bg: #eef1f4;
+    --xcode-callout-bg: rgba(60, 147, 253, 0.08);
+    --xcode-chrome-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.18) 100%);
+
+    --background-primary: var(--xcode-editor);
+    --background-primary-alt: var(--xcode-editor);
+    --background-secondary: var(--xcode-sidebar);
+    --background-secondary-alt: var(--xcode-window);
+    --background-modifier-border: var(--xcode-border);
+    --background-modifier-border-hover: #c7c6c5;
+    --background-modifier-form-field: #ffffff;
+    --background-modifier-hover: var(--xcode-hover);
+    --background-modifier-active-hover: var(--xcode-hover-strong);
+    --background-modifier-message: #ffffff;
+    --background-modifier-success: rgba(62, 128, 135, 0.14);
+    --background-modifier-error: rgba(226, 22, 21, 0.12);
+    --background-modifier-cover: rgba(40, 40, 40, 0.18);
+    --background-modifier-box-shadow: rgba(0, 0, 0, 0.12);
+
+    --text-normal: var(--xcode-text);
+    --text-muted: var(--xcode-muted);
+    --text-faint: var(--xcode-faint);
+    --text-on-accent: #ffffff;
+    --text-accent: var(--xcode-link);
+    --text-link: var(--xcode-link);
+    --text-selection: var(--xcode-selection);
+    --text-highlight-bg: rgba(60, 147, 253, 0.18);
+    --text-error: #e21615;
+    --text-success: #3e8087;
+
+    --interactive-normal: #ffffff;
+    --interactive-hover: #f6f7f8;
+    --interactive-accent: var(--xcode-accent);
+    --interactive-accent-hover: var(--xcode-accent-hover);
+    --interactive-accent-rgb: 60, 147, 253;
+
+    --nav-item-color: var(--xcode-muted);
+    --nav-item-color-hover: var(--xcode-text);
+    --nav-item-color-active: #ffffff;
+    --nav-item-background-hover: transparent;
+    --nav-item-background-active: var(--xcode-accent);
+
+    --titlebar-background: var(--xcode-window);
+    --titlebar-background-focused: var(--xcode-window);
+    --titlebar-text-color: var(--xcode-muted);
+    --titlebar-text-color-focused: var(--xcode-text);
+    --tab-container-background: var(--xcode-window);
+    --tab-divider-color: var(--xcode-border);
+
+    --icon-color: var(--xcode-faint);
+    --icon-color-hover: var(--xcode-text);
+    --icon-color-focused: var(--xcode-text);
+    --icon-color-active: var(--xcode-text);
+
+    --blockquote-border-color: #82adf3;
+    --hr-color: var(--xcode-border);
+    --table-border-color: var(--xcode-border);
+    --tag-background: rgba(39, 42, 216, 0.08);
+    --tag-color: var(--xcode-link);
+    --code-background: var(--xcode-code-bg);
+    --code-normal: var(--xcode-text);
+    --scrollbar-thumb-bg: #c7c6c5;
+    --scrollbar-active-thumb-bg: var(--xcode-accent);
+}
+
+/* =================================================================
+ * GLOBAL CHROME
+ * ================================================================= */
+
+body {
+    accent-color: var(--interactive-accent);
+}
+
+.workspace-split.mod-root {
+    background-color: var(--tab-divider-color);
+}
+
+.workspace-ribbon,
+.workspace-tab-header-container,
+.view-header,
+.status-bar {
+    background-color: var(--background-secondary-alt);
+    background-image: var(--xcode-chrome-gradient);
+}
+
+.workspace-ribbon {
+    border-right: 1px solid var(--tab-divider-color);
+}
+
+.workspace-split.mod-left-split {
+    border-right: 1px solid var(--tab-divider-color);
+}
+
+.workspace-split.mod-right-split {
+    border-left: 1px solid var(--tab-divider-color);
+}
+
+.workspace-leaf,
+.workspace-tabs.mod-top {
+    border-color: var(--background-modifier-border);
+}
+
+.view-header {
+    height: 34px;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.view-header-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.status-bar {
+    border-top: 1px solid var(--tab-divider-color);
+    color: var(--text-muted);
+}
+
+.status-bar-item {
+    padding: 0 10px;
+}
+
+.clickable-icon,
+.side-dock-ribbon-action,
+.workspace-tab-header-inner-icon,
+.nav-action-button {
+    color: var(--icon-color);
+}
+
+.clickable-icon:hover,
+.side-dock-ribbon-action:hover,
+.workspace-tab-header-inner-icon:hover,
+.nav-action-button:hover {
+    color: var(--icon-color-hover);
+    background-color: var(--background-modifier-hover);
+}
+
+/* =================================================================
+ * TABS, SIDEBAR, NAV
+ * ================================================================= */
+
+.workspace-tab-header-container {
+    border-bottom: 1px solid var(--tab-divider-color);
+    padding: 0 6px;
+    gap: 0;
+}
+
+.workspace-tab-header {
+    background-color: var(--xcode-tab-inactive);
+    border-right: 1px solid var(--tab-divider-color);
+    color: var(--text-faint);
+    min-height: 34px;
+    padding: 0 6px;
+}
+
+.workspace-tab-header.is-active {
+    background-color: var(--xcode-tab-active);
+    color: var(--text-normal);
+    box-shadow: inset 0 2px 0 0 var(--interactive-accent);
+}
+
+.workspace-tab-header:hover {
+    color: var(--text-normal);
+}
+
+.workspace-tab-header-inner-title {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.workspace-tab-header-new-tab,
+.workspace-tab-header-tab-list {
+    color: var(--icon-color);
+}
+
+.workspace-tab-container,
+.workspace-leaf-content,
+.mod-root .workspace-leaf-content {
+    background-color: var(--background-primary);
+}
+
+.nav-header,
+.search-input-container,
+.workspace-sidedock-vault-profile {
+    background-color: var(--background-secondary);
+}
+
+.nav-folder-title,
+.nav-file-title,
+.tag-pane-tag,
+.search-result-file-title,
+.search-result-file-matches {
+    border-radius: var(--radius-s);
+}
+
+.nav-folder-title:hover,
+.nav-file-title:hover,
+.tag-pane-tag:hover,
+.tree-item-self:hover {
+    background-color: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+.nav-file-title.is-active,
+.nav-folder-title.is-active,
+.tree-item-self.is-active,
+.search-result-file-title.is-active {
+    background-color: var(--nav-item-background-active);
+    color: var(--nav-item-color-active);
+}
+
+.tree-item-children {
+    border-left: 1px solid transparent;
+}
+
+/* =================================================================
+ * INPUTS, MENUS, MODALS
+ * ================================================================= */
+
+button,
+.mod-cta,
+input:not([type="checkbox"]),
+textarea,
+.dropdown,
+.suggestion-container,
+.menu,
+.modal,
+.prompt {
+    border-radius: var(--radius-m);
+}
+
+button,
+.mod-cta {
+    background-color: var(--interactive-normal);
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: none;
+}
+
+button:hover,
+.mod-cta:hover {
+    background-color: var(--interactive-hover);
+    border-color: var(--background-modifier-border-hover);
+}
+
+button.mod-cta {
+    background-color: var(--interactive-accent);
+    border-color: transparent;
+    color: var(--text-on-accent);
+}
+
+button.mod-cta:hover {
+    background-color: var(--interactive-accent-hover);
+}
+
+input:not([type="checkbox"]),
+textarea,
+.dropdown {
+    background-color: var(--background-modifier-form-field);
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: none;
+}
+
+input:not([type="checkbox"]):focus,
+textarea:focus,
+.dropdown:focus {
+    border-color: var(--xcode-focus);
+    box-shadow: 0 0 0 1px var(--xcode-focus);
+}
+
+.menu,
+.suggestion-container,
+.modal,
+.prompt {
+    background-color: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: 0 18px 48px var(--background-modifier-box-shadow);
+}
+
+.suggestion-item.is-selected,
+.menu-item.selected {
+    background-color: rgba(var(--interactive-accent-rgb), 0.14);
+}
+
+/* =================================================================
+ * TYPOGRAPHY & MARKDOWN
+ * ================================================================= */
+
+.markdown-source-view.mod-cm6 .cm-scroller,
+.markdown-preview-view,
+.markdown-rendered {
+    font-family: var(--font-text);
+    letter-spacing: 0.012em;
+    line-height: var(--line-height-normal);
+    font-weight: 400;
+}
+
+.markdown-source-view.mod-cm6 .cm-content {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    letter-spacing: 0.012em;
+}
+
+.markdown-source-view.mod-cm6 .cm-line {
+    padding-left: 0;
+}
+
+.markdown-rendered p,
+.markdown-rendered ul,
+.markdown-rendered ol,
+.markdown-rendered blockquote {
+    margin-block: 0.7em;
+}
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6,
+.HyperMD-header {
+    color: var(--text-normal);
+    font-family: var(--font-interface);
+    letter-spacing: 0.005em;
+    font-weight: 650;
+}
+
+.markdown-rendered h1,
+.markdown-rendered h2 {
+    border-bottom: 1px solid var(--background-modifier-border);
+    padding-bottom: 0.2em;
+}
+
+.markdown-rendered a,
+.cm-link,
+.external-link {
+    color: var(--text-link);
+}
+
+.markdown-rendered a:hover,
+.cm-link:hover,
+.external-link:hover {
+    color: var(--interactive-accent);
+}
+
+.markdown-rendered mark,
+.cm-highlight {
+    background-color: var(--text-highlight-bg);
+    color: inherit;
+}
+
+.markdown-rendered blockquote {
+    background-color: var(--xcode-callout-bg);
+    border-left: 3px solid var(--blockquote-border-color);
+    border-radius: 0 var(--radius-m) var(--radius-m) 0;
+    padding: 0.9em 1em;
+}
+
+.callout {
+    background-color: var(--xcode-callout-bg);
+    border: 1px solid rgba(var(--interactive-accent-rgb), 0.18);
+    border-radius: var(--radius-m);
+}
+
+.callout-title {
+    padding-bottom: 0.2rem;
+}
+
+.markdown-rendered table {
+    border-collapse: collapse;
+}
+
+.markdown-rendered th,
+.markdown-rendered td {
+    border: 1px solid var(--table-border-color);
+    padding: 0.55rem 0.8rem;
+}
+
+.markdown-rendered th {
+    background-color: var(--background-secondary-alt);
+    font-weight: 600;
+}
+
+hr {
+    border-color: var(--hr-color);
+}
+
+.tag,
+.cm-hashtag {
+    background-color: var(--tag-background);
+    color: var(--tag-color);
+    border-radius: 999px;
+    padding-inline: 0.5em;
+}
+
+/* =================================================================
+ * EDITOR DETAILS
+ * ================================================================= */
+
+.markdown-source-view.mod-cm6 .cm-gutters {
+    background-color: transparent;
+    border-right: none;
+    color: var(--text-faint);
+}
+
+.markdown-source-view.mod-cm6 .cm-active {
+    background-color: var(--xcode-line);
+}
+
+.markdown-source-view.mod-cm6 .cm-active .cm-gutterElement,
+.markdown-source-view.mod-cm6 .cm-gutterElement.cm-active {
+    color: var(--text-normal);
+}
+
+.markdown-source-view.mod-cm6 .cm-selectionBackground,
+.markdown-source-view.mod-cm6 ::selection,
+.markdown-preview-view ::selection {
+    background-color: var(--text-selection) !important;
+}
+
+.cm-fat-cursor .cm-cursor,
+.cm-cursor {
+    border-left-color: currentColor;
+}
+
+/* =================================================================
+ * C *ODE BLOCKS & INLINE CODE
+ * ================================================================= */
+
+code,
+pre,
+.cm-inline-code,
+.cm-s-obsidian .cm-inline-code,
+.cm-s-obsidian .cm-codeblock,
+.markdown-rendered code {
+    font-family: var(--font-monospace);
+    font-variant-ligatures: none;
+    letter-spacing: 0.01em;
+}
+
+:not(pre) > code,
+.cm-s-obsidian span.cm-inline-code {
+    background-color: var(--xcode-inline-code-bg);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-s);
+    color: var(--xcode-string);
+    padding: 0.12em 0.42em;
+}
+
+.HyperMD-codeblock,
+.markdown-rendered pre,
+.markdown-rendered pre code,
+.block-language-dataview,
+.cm-embed-block {
+    background-color: var(--code-background) !important;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Make code blocks look like one flat solid slab */
+.HyperMD-codeblock,
+.HyperMD-codeblock .cm-line,
+.HyperMD-codeblock-begin,
+.HyperMD-codeblock-end,
+.cm-s-obsidian .cm-codeblock,
+.cm-s-obsidian .cm-codeblock .cm-line,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock.cm-line,
+.markdown-rendered pre code {
+    background-color: var(--code-background) !important;
+    background-image: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.markdown-rendered pre,
+.block-language-dataview {
+    padding: 1rem 0.75rem !important;
+}
+
+.markdown-rendered pre code {
+    padding: 0 !important;
+    color: var(--code-normal);
+    line-height: 1.72;
+}
+
+/* =================================================================
+ * SYNTAX HIGHLIGHTING
+ * ================================================================= */
+
+.cm-comment,
+.token.comment,
+.token.prolog,
+.token.doctype {
+    color: var(--xcode-comment) !important;
+    font-style: italic;
+}
+
+.cm-string,
+.token.string,
+.token.attr-value,
+.token.char,
+.token.inserted {
+    color: var(--xcode-string) !important;
+}
+
+.cm-number,
+.token.number,
+.token.unit {
+    color: var(--xcode-number) !important;
+}
+
+.cm-keyword,
+.cm-atom,
+.token.keyword,
+.token.atrule,
+.token.control-flow,
+.token.boolean {
+    color: var(--xcode-keyword) !important;
+    font-weight: 600;
+}
+
+.cm-meta,
+.token.directive,
+.token.macro,
+.token.important {
+    color: var(--xcode-preprocessor) !important;
+}
+
+.cm-def,
+.cm-variableName.cm-def,
+.cm-builtin,
+.token.function,
+.token.function-variable,
+.token.method,
+.token.builtin,
+.token.class-name {
+    color: var(--xcode-function) !important;
+    font-weight: 700 !important;
+}
+
+.cm-variable,
+.cm-variable-2,
+.cm-variable-3,
+.token.variable {
+    color: var(--xcode-variable) !important;
+}
+
+.cm-property,
+.token.property,
+.token.parameter,
+.token.field,
+.token.attr-name {
+    color: var(--xcode-property) !important;
+}
+
+.cm-builtin,
+.cm-qualifier,
+.cm-typeName,
+.token.builtin,
+.token.class-name,
+.token.type,
+.token.namespace {
+    color: var(--xcode-type) !important;
+}
+
+.token.constant,
+.token.annotation,
+.token.symbol {
+    color: var(--xcode-annotation) !important;
+}
+
+.cm-operator,
+.token.operator {
+    color: var(--xcode-operator) !important;
+}
+
+.cm-bracket,
+.cm-punctuation,
+.token.punctuation {
+    color: var(--xcode-punctuation) !important;
+}
+
+.cm-quote,
+.token.tag,
+.token.selector {
+    color: var(--xcode-parameter) !important;
+}
+
+.cm-link,
+.token.url,
+.token.link {
+    color: var(--text-link) !important;
+}
+
+.theme-dark .markdown-rendered pre code .token.comment,
+.theme-dark .markdown-rendered pre code .token.keyword,
+.theme-dark .markdown-rendered pre code .token.function,
+.theme-dark .markdown-rendered pre code .token.class-name,
+.theme-dark .markdown-rendered pre code .token.type,
+.theme-dark .markdown-rendered pre code .token.property,
+.theme-dark .markdown-rendered pre code .token.parameter,
+.theme-dark .markdown-rendered pre code .token.operator,
+.theme-dark .markdown-rendered pre code .token.number,
+.theme-dark .markdown-rendered pre code .token.string,
+.theme-dark .markdown-rendered pre code .token.boolean,
+.theme-dark .markdown-rendered pre code .token.variable,
+.theme-dark .markdown-rendered pre code .token.attr-name,
+.theme-dark .markdown-rendered pre code .token.tag,
+.theme-dark .markdown-rendered pre code .token.selector {
+    opacity: 1;
+}
+
+.theme-light .markdown-rendered pre code .token.comment,
+.theme-light .markdown-rendered pre code .token.keyword,
+.theme-light .markdown-rendered pre code .token.function,
+.theme-light .markdown-rendered pre code .token.class-name,
+.theme-light .markdown-rendered pre code .token.type,
+.theme-light .markdown-rendered pre code .token.property,
+.theme-light .markdown-rendered pre code .token.parameter,
+.theme-light .markdown-rendered pre code .token.operator,
+.theme-light .markdown-rendered pre code .token.number,
+.theme-light .markdown-rendered pre code .token.string,
+.theme-light .markdown-rendered pre code .token.boolean,
+.theme-light .markdown-rendered pre code .token.variable,
+.theme-light .markdown-rendered pre code .token.attr-name,
+.theme-light .markdown-rendered pre code .token.tag,
+.theme-light .markdown-rendered pre code .token.selector {
+    opacity: 1;
+}
+
+/* =================================================================
+ * SCROLLBARS
+ * ================================================================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-bg);
+    border: 3px solid transparent;
+    background-clip: content-box;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+    background-color: var(--scrollbar-active-thumb-bg);
+}
