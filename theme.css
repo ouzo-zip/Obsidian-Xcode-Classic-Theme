@@ -468,6 +468,7 @@ textarea:focus,
     letter-spacing: 0.012em;
     line-height: var(--line-height-normal);
     font-weight: 400;
+    -webkit-font-smoothing: antialiased;
 }
 
 .markdown-source-view.mod-cm6 .cm-content {
@@ -530,11 +531,11 @@ textarea:focus,
     border-radius: 0 var(--radius-m) var(--radius-m) 0;
     padding: 0.9em 1em;
 }
-
 .callout {
-    background-color: var(--xcode-callout-bg);
-    border: 1px solid rgba(var(--interactive-accent-rgb), 0.18);
+    border: none !important;
+    box-shadow: none !important;
     border-radius: var(--radius-m);
+    overflow: hidden;
 }
 
 .callout-title {
@@ -599,215 +600,158 @@ hr {
 }
 
 /* =================================================================
- * C *ODE BLOCKS & INLINE CODE
+ * UNIFIED XCODE CODE SLAB (NO INTERNAL LINES)
  * ================================================================= */
 
-code,
-pre,
-.cm-inline-code,
-.cm-s-obsidian .cm-inline-code,
-.cm-s-obsidian .cm-codeblock,
-.markdown-rendered code {
-    font-family: var(--font-monospace);
-    font-variant-ligatures: none;
-    letter-spacing: 0.01em;
-}
-
-:not(pre) > code,
-.cm-s-obsidian span.cm-inline-code {
-    background-color: var(--xcode-inline-code-bg);
-    border: 1px solid var(--background-modifier-border);
-    border-radius: var(--radius-s);
-    color: var(--xcode-string);
-    padding: 0.12em 0.42em;
-}
-
-.HyperMD-codeblock,
-.markdown-rendered pre,
-.markdown-rendered pre code,
-.block-language-dataview,
-.cm-embed-block {
+/* 1. Unify the background and remove internal borders for the Editor */
+.markdown-source-view.mod-cm6 .HyperMD-codeblock,
+.markdown-source-view.mod-cm6 .cm-codeblock-begin,
+.markdown-source-view.mod-cm6 .cm-codeblock-end {
     background-color: var(--code-background) !important;
-    border: 1px solid var(--background-modifier-border);
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
+    font-family: var(--font-monospace) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.015em !important;
+    -webkit-font-smoothing: subpixel-antialiased !important;
 
-/* Make code blocks look like one flat solid slab */
-.HyperMD-codeblock,
-.HyperMD-codeblock .cm-line,
-.HyperMD-codeblock-begin,
-.HyperMD-codeblock-end,
-.cm-s-obsidian .cm-codeblock,
-.cm-s-obsidian .cm-codeblock .cm-line,
-.markdown-source-view.mod-cm6 .HyperMD-codeblock.cm-line,
-.markdown-rendered pre code {
-    background-color: var(--code-background) !important;
-    background-image: none !important;
+    /* These lines kill the "striped" look */
     border: none !important;
-    border-radius: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     box-shadow: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
 }
-.markdown-rendered pre,
-.block-language-dataview {
-    padding: 1rem 0.75rem !important;
+
+/* 2. Add a single border around the entire block in Reading Mode */
+.markdown-rendered pre {
+    border: 1px solid var(--background-modifier-border) !important;
+    border-radius: var(--radius-m) !important;
+    padding: 1em !important;
+    background-color: var(--code-background) !important;
 }
 
 .markdown-rendered pre code {
-    padding: 0 !important;
-    color: var(--code-normal);
-    line-height: 1.72;
+    font-family: var(--font-monospace) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.015em !important;
+}
+
+/* 3. Inline Code (Backticks) remains distinct */
+.cm-s-obsidian span.cm-inline-code,
+.markdown-rendered code:not(pre code) {
+    font-family: var(--font-monospace) !important;
+    font-weight: 600 !important;
+    color: var(--xcode-string) !important;
+    background-color: var(--xcode-inline-code-bg) !important;
+    padding: 0.12em 0.42em !important;
+    border: 1px solid var(--background-modifier-border) !important;
+    border-radius: var(--radius-s) !important;
+}
+
+/* 4. Protection Rule: Ensure regular prose is NOT affected */
+.markdown-source-view.mod-cm6 .cm-line:not(.HyperMD-codeblock):not(.cm-codeblock-begin):not(.cm-codeblock-end),
+.markdown-rendered p,
+.markdown-rendered li {
+    font-family: var(--font-text) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.012em !important;
+    -webkit-font-smoothing: antialiased !important;
 }
 
 /* =================================================================
- * SYNTAX HIGHLIGHTING
+ * SYNTAX HIGHLIGHTING (XCODE ENHANCED)
  * ================================================================= */
 
-.cm-comment,
-.token.comment,
-.token.prolog,
-.token.doctype {
-    color: var(--xcode-comment) !important;
-    font-style: italic;
+/* 1. Basic Code & Token Setup */
+.cm-s-obsidian .cm-codeblock,
+.markdown-rendered pre code {
+    color: var(--xcode-text);
 }
 
-.cm-string,
-.token.string,
-.token.attr-value,
-.token.char,
-.token.inserted {
-    color: var(--xcode-string) !important;
-}
-
-.cm-number,
-.token.number,
-.token.unit {
-    color: var(--xcode-number) !important;
-}
-
+/* 2. Keywords - Bold & Vibrant */
 .cm-keyword,
 .cm-atom,
 .token.keyword,
 .token.atrule,
-.token.control-flow,
-.token.boolean {
-    color: var(--xcode-keyword) !important;
-    font-weight: 600;
-}
-
-.cm-meta,
-.token.directive,
-.token.macro,
+.token.selector,
 .token.important {
-    color: var(--xcode-preprocessor) !important;
+    color: var(--xcode-keyword) !important;
+    font-weight: 700 !important;
 }
 
+/* 3. Functions & Methods */
 .cm-def,
 .cm-variableName.cm-def,
 .cm-builtin,
 .token.function,
-.token.function-variable,
-.token.method,
 .token.builtin,
 .token.class-name {
     color: var(--xcode-function) !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
 }
 
-.cm-variable,
-.cm-variable-2,
-.cm-variable-3,
+/* 4. Strings & Attributes */
+.cm-string,
+.token.string,
+.token.attr-value,
+.token.char {
+    color: var(--xcode-string) !important;
+}
+
+/* 5. Comments - Italicized */
+.cm-comment,
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: var(--xcode-comment) !important;
+    font-style: italic !important;
+}
+
+/* 6. Numbers & Booleans */
+.cm-number,
+.token.number,
+.token.boolean,
+.token.constant {
+    color: var(--xcode-number) !important;
+}
+
+/* 7. Types, Classes & Preprocessors */
+.cm-typeName,
+.cm-meta,
+.token.type,
+.token.class-name,
+.token.regex,
 .token.variable {
-    color: var(--xcode-variable) !important;
+    color: var(--xcode-type) !important;
 }
 
+/* 8. Properties & Parameters */
 .cm-property,
 .token.property,
 .token.parameter,
-.token.field,
 .token.attr-name {
     color: var(--xcode-property) !important;
 }
 
-.cm-builtin,
-.cm-qualifier,
-.cm-typeName,
-.token.builtin,
-.token.class-name,
-.token.type,
-.token.namespace {
-    color: var(--xcode-type) !important;
-}
-
-.token.constant,
-.token.annotation,
-.token.symbol {
-    color: var(--xcode-annotation) !important;
-}
-
+/* 9. Operators & Punctuation */
 .cm-operator,
-.token.operator {
-    color: var(--xcode-operator) !important;
-}
-
-.cm-bracket,
 .cm-punctuation,
+.token.operator,
 .token.punctuation {
     color: var(--xcode-punctuation) !important;
+    font-weight: 400;
 }
 
-.cm-quote,
-.token.tag,
-.token.selector {
-    color: var(--xcode-parameter) !important;
+/* 10. Tags (HTML/XML) */
+.token.tag {
+    color: var(--xcode-keyword) !important;
 }
 
-.cm-link,
-.token.url,
-.token.link {
-    color: var(--text-link) !important;
+/* Fix for PrismJS "Dulling" in Dark Mode */
+.theme-dark .markdown-rendered pre code .token {
+    text-shadow: none !important;
 }
-
-.theme-dark .markdown-rendered pre code .token.comment,
-.theme-dark .markdown-rendered pre code .token.keyword,
-.theme-dark .markdown-rendered pre code .token.function,
-.theme-dark .markdown-rendered pre code .token.class-name,
-.theme-dark .markdown-rendered pre code .token.type,
-.theme-dark .markdown-rendered pre code .token.property,
-.theme-dark .markdown-rendered pre code .token.parameter,
-.theme-dark .markdown-rendered pre code .token.operator,
-.theme-dark .markdown-rendered pre code .token.number,
-.theme-dark .markdown-rendered pre code .token.string,
-.theme-dark .markdown-rendered pre code .token.boolean,
-.theme-dark .markdown-rendered pre code .token.variable,
-.theme-dark .markdown-rendered pre code .token.attr-name,
-.theme-dark .markdown-rendered pre code .token.tag,
-.theme-dark .markdown-rendered pre code .token.selector {
-    opacity: 1;
-}
-
-.theme-light .markdown-rendered pre code .token.comment,
-.theme-light .markdown-rendered pre code .token.keyword,
-.theme-light .markdown-rendered pre code .token.function,
-.theme-light .markdown-rendered pre code .token.class-name,
-.theme-light .markdown-rendered pre code .token.type,
-.theme-light .markdown-rendered pre code .token.property,
-.theme-light .markdown-rendered pre code .token.parameter,
-.theme-light .markdown-rendered pre code .token.operator,
-.theme-light .markdown-rendered pre code .token.number,
-.theme-light .markdown-rendered pre code .token.string,
-.theme-light .markdown-rendered pre code .token.boolean,
-.theme-light .markdown-rendered pre code .token.variable,
-.theme-light .markdown-rendered pre code .token.attr-name,
-.theme-light .markdown-rendered pre code .token.tag,
-.theme-light .markdown-rendered pre code .token.selector {
-    opacity: 1;
-}
-
 /* =================================================================
  * SCROLLBARS
  * ================================================================= */
@@ -829,3 +773,6 @@ pre,
 ::-webkit-scrollbar-thumb:active {
     background-color: var(--scrollbar-active-thumb-bg);
 }
+
+
+
